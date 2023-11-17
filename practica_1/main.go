@@ -17,22 +17,20 @@ func validateAndSetOption(inf int, sup int) int {
 }
 
 func main() {
-	op := validateAndSetOption(1, 7)
-	switch op {
-	case 1:
-		practica.Ej1()
-	case 2:
-		practica.Ej2()
-	case 3:
-		practica.Ej3()
-	case 4:
-		practica.Ej4()
-	case 5:
-		practica.Ej5()
-	case 6:
-		practica.Ej6()
-	default:
-		practica.EjGrupo()
+	op := validateAndSetOption(0, 7)
+
+	if op != 0 {
+		functions := []func(){
+			practica.Ej1,
+			practica.Ej2,
+			practica.Ej3,
+			practica.Ej4,
+			practica.Ej5,
+			practica.Ej6,
+			practica.EjGrupo,
+		}
+
+		functions[op-1]()
 	}
 
 }
