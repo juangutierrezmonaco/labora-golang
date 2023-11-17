@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/labora/labora-golang/practica_1/ejercicios"
+	"github.com/labora/labora-golang/practica_1/util"
 )
 
 func validateAndSetOption(inf int, sup int) int {
@@ -36,6 +37,7 @@ func main() {
 		fmt.Print("\n¿Querés correr volver al INICIO? S/s: ")
 		fmt.Scan(&runAgain)
 		if runAgain == "S" || runAgain == "s" {
+			util.ClearConsole()
 			main()
 		} else {
 			fmt.Println("¡Adiós!")
