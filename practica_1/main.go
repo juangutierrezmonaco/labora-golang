@@ -31,6 +31,15 @@ func main() {
 		}
 
 		functions[op-1]()
+
+		var runAgain string
+		fmt.Print("\n¿Querés correr volver al INICIO? S/s: ")
+		fmt.Scan(&runAgain)
+		if runAgain == "S" || runAgain == "s" {
+			main()
+		} else {
+			fmt.Println("¡Adiós!")
+		}
 	}
 
 }
