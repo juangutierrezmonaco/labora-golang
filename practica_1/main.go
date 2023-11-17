@@ -7,10 +7,10 @@ import (
 
 func validateAndSetOption(inf int, sup int) int {
 	var op int
-	fmt.Printf("Hola! Ingresá qué ejercicio querés correr (%d a %d): ", inf, sup)
+	fmt.Printf("Hola! Ingresá qué ejercicio querés correr (%d a %d, 0 para SALIR): ", inf+1, sup)
 	fmt.Scan(&op)
 	for op < inf || op > sup {
-		fmt.Printf("Opción incorrecta: Ingrese nuavemente (%d a %d): ", inf, sup)
+		fmt.Printf("Opción incorrecta: Ingrese nuavemente (%d a %d, 0 para SALIR): ", inf+1, sup)
 		fmt.Scan(&op)
 	}
 	return op
