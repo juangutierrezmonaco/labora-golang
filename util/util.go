@@ -1,12 +1,16 @@
 package util
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"os/exec"
 	"runtime"
+	"strconv"
+	"strings"
 )
 
+/*** CONSOLE ***/
 var clear map[string]func() //create a map for storing clear funcs
 
 func init() {
@@ -32,6 +36,7 @@ func ClearConsole() {
 	}
 }
 
+/*** MENU ***/
 func validateAndSetOption(inf int, sup int) int {
 	var op int
 	fmt.Printf("Hola! Ingresá qué ejercicio querés correr (%d a %d, 0 para SALIR): ", inf+1, sup)
@@ -60,5 +65,21 @@ func RunMenu(infOp int, supOp int, functions []func()) {
 			fmt.Println("¡Adiós!")
 		}
 	}
+}
 
+/*** ARRAYS ***/
+func JoinIntArr(arr []int, sep string) string {
+	stringArr := make([]string, len(arr))
+	for i, v := range arr {
+		stringArr[i] = strconv.Itoa(v)
+	}
+
+	return strings.Join(stringArr, sep)
+}
+
+/*** I/O ***/
+func ScanSentence() string {
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	return scanner.Text()
 }
