@@ -5,6 +5,10 @@ import (
 	"github.com/labora/labora-golang/util"
 )
 
+/**********************************************************************************/
+/*                      PRÁCTICA DE SENTENCIAS CONDICIONALES                      */
+/**********************************************************************************/
+
 func main() {
 	functions := []func(){
 		practica.Ej1,
