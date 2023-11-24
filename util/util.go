@@ -49,7 +49,12 @@ func validateAndSetOption(inf int, sup int) int {
 }
 
 func RunMenu(infOp int, supOp int, functions []func()) {
-	op := validateAndSetOption(infOp, supOp)
+	var op int
+	if len(functions) > 1 {
+		op = validateAndSetOption(infOp, supOp)
+	} else {
+		op = 1
+	}
 
 	if op != 0 {
 
