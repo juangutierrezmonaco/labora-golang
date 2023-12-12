@@ -3,11 +3,13 @@ package util
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 	"os/exec"
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 )
 
 /*** CONSOLE ***/
@@ -193,12 +195,18 @@ func ScanValue(value interface{}) (interface{}, error) {
 	}
 }
 
-func WaitForEnter(){
+func WaitForEnter() {
 	fmt.Print("Presioná 'Enter' para continuar...")
-  bufio.NewReader(os.Stdin).ReadBytes('\n') 
+	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }
 
 /*** CASTING ***/
 func Itoa(num int) string {
 	return strconv.Itoa(num)
+}
+
+/*** GENERATING STUFF ***/
+func GenerateRandomNumber(min int, max int) int {
+	rand.Seed(time.Now().UnixNano())
+	return rand.Intn(max-min+1) + min
 }
