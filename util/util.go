@@ -160,6 +160,44 @@ func ScanSentence() string {
 	return scanner.Text()
 }
 
+func ScanValue(value interface{}) (interface{}, error) {
+	input := ScanSentence()
+
+	switch value.(type) {
+	case *bool:
+		boolValue, err := strconv.ParseBool(strings.TrimSpace(input))
+		if err != nil {
+			return nil, err
+		}
+		return boolValue, nil
+	case *float64:
+		floatValue, err := strconv.ParseFloat(strings.TrimSpace(input), 64)
+		if err != nil {
+			return nil, err
+		}
+		return floatValue, nil
+	case *float32:
+		floatValue, err := strconv.ParseFloat(strings.TrimSpace(input), 32)
+		if err != nil {
+			return nil, err
+		}
+		return float32(floatValue), nil
+	case *int:
+		intValue, err := strconv.Atoi(strings.TrimSpace(input))
+		if err != nil {
+			return nil, err
+		}
+		return intValue, nil
+	default:
+		return nil, fmt.Errorf("Tipo no admitido")
+	}
+}
+
+func WaitForEnter(){
+	fmt.Print("Presioná 'Enter' para continuar...")
+  bufio.NewReader(os.Stdin).ReadBytes('\n') 
+}
+
 /*** CASTING ***/
 func Itoa(num int) string {
 	return strconv.Itoa(num)
