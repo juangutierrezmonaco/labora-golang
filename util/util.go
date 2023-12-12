@@ -36,10 +36,10 @@ func ClearConsole() {
 	}
 }
 
-/*** MENU ***/
+/*** MENU FOR EXERCISES ***/
 func validateAndSetOption(inf int, sup int) int {
 	var op int
-	fmt.Printf("Hola! Ingresá qué ejercicio querés correr (%d a %d, 0 para SALIR): ", inf+1, sup)
+	fmt.Printf("Ingresá qué ejercicio querés correr (%d a %d, 0 para SALIR): ", inf+1, sup)
 	fmt.Scan(&op)
 	for op < inf || op > sup {
 		fmt.Printf("Opción incorrecta: Ingrese nuavemente (%d a %d, 0 para SALIR): ", inf+1, sup)
@@ -61,11 +61,81 @@ func RunMenu(infOp int, supOp int, functions []func()) {
 		functions[op-1]()
 
 		var runAgain string
-		fmt.Print("\n¿Querés correr volver al INICIO? S/s: ")
+		fmt.Print("\n¿Querés volver al INICIO? S/s: ")
 		fmt.Scan(&runAgain)
 		if runAgain == "S" || runAgain == "s" {
 			ClearConsole()
 			RunMenu(infOp, supOp, functions)
+		} else {
+			fmt.Println("¡Adiós!")
+		}
+	}
+}
+
+/*** GENERIC MENU ***/
+type Menu struct {
+	functions []func()
+	options   []string
+	title    string
+}
+
+func NewMenu(functions []func(), options []string, title string) Menu {
+	var m Menu
+	m.functions = functions
+	m.options = options
+	m.options = append(m.options, "Salir")
+	m.title = title
+	return m
+}
+
+func (m *Menu) printTitle() {
+	fmt.Printf("======= %s =======\n\n", m.title)
+}
+
+func (m *Menu) Print() {
+	m.printTitle()
+	for i, opt := range m.options {
+		fmt.Printf("%d. %s\n", i+1, opt)
+	}
+	fmt.Println()
+}
+
+func (m *Menu) validateAndSetOption() int {
+	var op int
+	inf := 1
+	sup := len(m.options)
+
+	fmt.Print("Ingresá una opción: ")
+	fmt.Scan(&op)
+	for op < inf || op > sup {
+		ClearConsole()
+		m.Print()
+		fmt.Printf("Opción incorrecta: Ingrese nuavemente (%d a %d): ", inf, sup)
+		fmt.Scan(&op)
+	}
+	return op
+}
+
+func (m *Menu) Run() {
+	ClearConsole()
+
+	// Printing menu
+	m.Print()
+
+	// Choose an option
+	op := m.validateAndSetOption()
+	ClearConsole()
+
+	if op != len(m.functions) + 1 {
+
+		m.functions[op-1]()
+
+		var runAgain string
+		fmt.Print("\n¿Querés volver al INICIO? S/s: ")
+		fmt.Scan(&runAgain)
+		if runAgain == "S" || runAgain == "s" {
+			ClearConsole()
+			m.Run()
 		} else {
 			fmt.Println("¡Adiós!")
 		}
