@@ -83,7 +83,7 @@ func NewMenu(functions []func(), options []string, title string) Menu {
 	var m Menu
 	m.functions = functions
 	m.options = options
-	m.options = append(m.options, "Salir")
+	m.options = append(m.options, "Volver")
 	m.title = title
 	return m
 }
@@ -116,7 +116,7 @@ func (m *Menu) validateAndSetOption() int {
 	return op
 }
 
-func (m *Menu) Run() {
+func (m *Menu) Run() int {
 	ClearConsole()
 
 	// Printing menu
@@ -126,7 +126,7 @@ func (m *Menu) Run() {
 	op := m.validateAndSetOption()
 	ClearConsole()
 
-	if op != len(m.functions) + 1 {
+	if op != len(m.functions) + 1 && m.functions != nil{
 
 		m.functions[op-1]()
 
@@ -140,6 +140,7 @@ func (m *Menu) Run() {
 			fmt.Println("¡Adiós!")
 		}
 	}
+	return op
 }
 
 /*** ARRAYS ***/
