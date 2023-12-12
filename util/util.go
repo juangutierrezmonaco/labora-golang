@@ -76,7 +76,7 @@ func RunMenu(infOp int, supOp int, functions []func()) {
 type Menu struct {
 	functions []func()
 	options   []string
-	title    string
+	title     string
 }
 
 func NewMenu(functions []func(), options []string, title string) Menu {
@@ -126,7 +126,7 @@ func (m *Menu) Run() int {
 	op := m.validateAndSetOption()
 	ClearConsole()
 
-	if op != len(m.functions) + 1 && m.functions != nil{
+	if op != len(m.functions)+1 && m.functions != nil {
 
 		m.functions[op-1]()
 
@@ -158,4 +158,9 @@ func ScanSentence() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
 	return scanner.Text()
+}
+
+/*** CASTING ***/
+func Itoa(num int) string {
+	return strconv.Itoa(num)
 }
