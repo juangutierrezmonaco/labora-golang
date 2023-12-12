@@ -16,8 +16,8 @@ func main() {
 		practica.Ej2,
 		practica.Ej3,
 		practica.Ej4,
-		practica.Ej5,
+		practica.EjPairProgramming,
 	}
 
-	util.RunMenu(0, 5, functions)
+	util.RunMenu(0, len(functions), functions)
 }

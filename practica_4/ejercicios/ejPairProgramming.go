@@ -59,7 +59,7 @@ func dnaChainsAreEqual(d1 DnaChain, d2 DnaChain) bool {
 	return strings.Contains(d1Str, d2Str)
 }
 
-func Ej5() {
+func EjPairProgramming() {
 	//Una cadena de ADN se representa como una secuencia circular de bases (adenina, timina, citosina y guanina) que es única para cada ser vivo, por ejemplo:
 
 	// |  A  |  T  |  T  |

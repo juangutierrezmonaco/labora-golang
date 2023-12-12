@@ -25,5 +25,5 @@ func main() {
 		practica.Ej11,
 	}
 
-	util.RunMenu(0, 11, functions)
+	util.RunMenu(0, len(functions), functions)
 }

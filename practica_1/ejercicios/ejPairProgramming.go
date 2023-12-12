@@ -10,7 +10,7 @@ func rectanglePerimeter(length float32, width float32) float32{
 	return 2 * (length * width)
 }
 
-func EjGrupo() {
+func EjPairProgramming() {
 	// Escribe un programa que calcule el área y el perímetro de un rectángulo. El programa debe pedir al usuario que introduzca la longitud y la anchura 
 	// del rectángulo y  luego calcular y mostrar el área y el perímetro.
 	// Especificaciones:
