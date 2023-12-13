@@ -12,9 +12,7 @@ import (
 func main() {
 
 	functions := []func(){
-		practica.Ej1,
-		practica.Ej2,
-		practica.Ej3,
+		practica.Ej1_2_3,
 		practica.Ej4,
 		practica.Ej5,
 		practica.EjPairProgramming,

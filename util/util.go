@@ -200,6 +200,11 @@ func WaitForEnter() {
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }
 
+func TextWithFiller(filler string, quantityPerSide int, target string) string{
+	fillerText := strings.Repeat(filler, quantityPerSide)
+	return fmt.Sprintf("%s %s %s", fillerText, target, fillerText)
+}
+
 /*** CASTING ***/
 func Itoa(num int) string {
 	return strconv.Itoa(num)
