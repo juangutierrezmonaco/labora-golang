@@ -2,10 +2,22 @@ package practica
 
 import (
 	"fmt"
+	"strings"
 )
 
+func cleanString(s string) string {
+	cleanedStr := strings.Replace(s, ".", "", -1)
+	cleanedStr = strings.Replace(cleanedStr, ",", "", -1)
+	return cleanedStr
+}
+
 func WordCount(s string) map[string]int {
-	return map[string]int{"x": 1}
+	countByChar := make(map[string]int)
+	wordArr := strings.Fields(cleanString(s))
+	for _, word := range wordArr {
+		countByChar[word]++
+	}
+	return countByChar
 }
 
 func Ej1() {
@@ -21,5 +33,5 @@ func Ej1() {
 
 	s := "I ate a donut. Then I ate another donut."
 	countByChar := WordCount(s)
-	fmt.Println(countByChar)
+	fmt.Printf("%v\n", countByChar)
 }
