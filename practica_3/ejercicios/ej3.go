@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func isPrimeNumber(num int) bool {
+func IsPrimeNumber(num int) bool {
 	divs := findNumberDivisors(num)
 	return len(divs) == 1
 }
@@ -18,7 +18,7 @@ func Ej3() {
 	fmt.Print("Ingrese un número: ")
 	fmt.Scan(&num)
 
-	isPrimeNumber := isPrimeNumber(num)
+	isPrimeNumber := IsPrimeNumber(num)
 	if isPrimeNumber {
 		fmt.Printf("El número %d es primo", num)
 	} else {
