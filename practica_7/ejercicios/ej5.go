@@ -244,6 +244,7 @@ func printTextSlowly(text string, milliseconds int) {
 		if unicode.IsSpace(letter) {
 			wordCount++
 		}
+		// Using \t as \n to simplify the logic
 		if wordCount == 10 || string(letter) =="\t"{
 			fmt.Println()
 			wordCount=0
