@@ -31,6 +31,7 @@ func sumNEvenNumbersGauss(n int) int {
 }
 
 func sumNOddNumbers(n int) int {
+	time.Sleep(1 * time.Second)
 	return sumOddOrEvenNumbers(n, true)
 }
 
@@ -38,15 +39,29 @@ func sumNOddNumbersGauss(n int) int {
 	return n * n
 }
 
-func concurrentSum(n int, numberText string, wg *sync.WaitGroup, sumFunc func(int) int) {
+func concurrentSum(n int, wg *sync.WaitGroup, sm *SumResult) {
 	timerChan := make(chan time.Duration)
 	defer wg.Done()
 
 	go timer(&timerChan)
-	res := sumFunc(n)
+	sm.Sum = sm.SumFunc(n)
 	timerChan <- 0
-	fmt.Printf("La suma de los primeros %d números %s dio: %d. Y tardó: %v\n", n, numberText, res, <-timerChan)
+	sm.Duration = <-timerChan
+	fmt.Printf("La suma de los primeros %d números %s dio: %d. Y tardó: %v\n", n, sm.Type, sm.Sum, sm.Duration)
 }
+
+// idea by vituchon distorted by me
+type SumResult struct {
+	Type     string
+	SumFunc  func(int) int
+	Sum      int
+	Duration time.Duration
+}
+
+const (
+	oddType  = "impares"
+	evenType = "pares"
+)
 
 func Ej3() {
 	// Escriba un programa en donde haya dos gorutinas donde una suma los primeros 100 números pares y la otra los 100 primeros números impares.
@@ -59,10 +74,30 @@ func Ej3() {
 	n := 10000
 
 	// Even sum
-	go concurrentSum(n, "pares", &wg, sumNEvenNumbers)
+	evenSumResult := SumResult{
+		Type:    evenType,
+		SumFunc: sumNEvenNumbers,
+	}
+	go concurrentSum(n, &wg, &evenSumResult)
 
 	// Odd sum
-	go concurrentSum(n, "impares", &wg, sumNOddNumbers)
+	oddSumResult := SumResult{
+		Type:    oddType,
+		SumFunc: sumNOddNumbers,
+	}
+	go concurrentSum(n, &wg, &oddSumResult)
 
 	wg.Wait()
+
+	
+	var fastest *SumResult
+	diff := evenSumResult.Duration.Nanoseconds() - oddSumResult.Duration.Nanoseconds()
+	if evenSumResult.Duration < oddSumResult.Duration {
+		fastest = &evenSumResult
+		diff = -diff
+	} else {
+		fastest = &oddSumResult
+	}
+
+	fmt.Printf("\n\nGanó la suma de números %s, pues fue más rápida. Con una diferencia de: %v\n", fastest.Type, time.Duration(diff))
 }
