@@ -64,7 +64,7 @@ func Ej1() {
 	go timer(&timerChan)
 
 	res := naturalSum(from, to)
-	fmt.Println("El resultado (secuencial) es: ", res)
+	fmt.Println("El resultado (secuencial) es:\t", res)
 
 	timerChan <- 0
 	fmt.Printf("Tardó: %v\n", <-timerChan)
@@ -73,7 +73,7 @@ func Ej1() {
 	go timer(&timerChan)
 
 	res = naturalSumWithConcurrence(from, to)
-	fmt.Println("El resultado (concurrente) es: ", res)
+	fmt.Println("El resultado (concurrente) es:\t", res)
 
 	timerChan <- 0 // Send to the timer that it finished
 	fmt.Printf("Tardó: %v\n", <-timerChan)
