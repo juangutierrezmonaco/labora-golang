@@ -1,12 +1,12 @@
 package main
 
 import (
-	"github.com/labora/labora-golang/practica_3/ejercicios"
+	"github.com/labora/labora-golang/practica_4_arrays/ejercicios"
 	"github.com/labora/labora-golang/util"
 )
 
 /**********************************************************************************/
-/*                                PRÁCTICA DE FUNCIONES                           */
+/*                                PRÁCTICA DE ARRAYS                              */
 /**********************************************************************************/
 
 func main() {
@@ -16,13 +16,7 @@ func main() {
 		practica.Ej2,
 		practica.Ej3,
 		practica.Ej4,
-		practica.Ej5,
-		practica.Ej6,
-		practica.Ej7,
-		practica.Ej8,
-		practica.Ej9,
-		practica.Ej10,
-		practica.Ej11,
+		practica.EjPairProgramming,
 	}
 
 	util.RunMenu(0, len(functions), functions)

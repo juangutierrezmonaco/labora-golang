@@ -1,22 +1,19 @@
 package main
 
 import (
-	"github.com/labora/labora-golang/practica_1/ejercicios"
+	"github.com/labora/labora-golang/practica_5_structs/ejercicios"
 	"github.com/labora/labora-golang/util"
 )
 
 /**********************************************************************************/
-/*                      PRÁCTICA DE SENTENCIAS CONDICIONALES                      */
+/*                               PRÁCTICA DE STRUCTS                              */
 /**********************************************************************************/
 
 func main() {
+
 	functions := []func(){
 		practica.Ej1,
 		practica.Ej2,
-		practica.Ej3,
-		practica.Ej4,
-		practica.Ej5,
-		practica.Ej6,
 		practica.EjPairProgramming,
 	}
 

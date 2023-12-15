@@ -3,7 +3,7 @@ package practica
 import (
 	"fmt"
 
-	"github.com/labora/labora-golang/practica_3/ejercicios"
+	"github.com/labora/labora-golang/practica_3_functions/ejercicios"
 	"github.com/labora/labora-golang/util"
 )
 

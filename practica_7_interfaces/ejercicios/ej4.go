@@ -3,7 +3,7 @@ package practica
 import (
 	"fmt"
 
-	practica "github.com/labora/labora-golang/practica_3/ejercicios"
+	practica "github.com/labora/labora-golang/practica_3_functions/ejercicios"
 )
 
 type NumberPredicate interface {
