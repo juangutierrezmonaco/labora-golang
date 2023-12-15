@@ -19,9 +19,38 @@ func naturalSum(from int, to int) int {
 	return acc
 }
 
-func naturalSumWithConcurrence(from int, to int, ch *chan int) {
-	sum := naturalSum(from, to)
-	*ch <- sum
+func getNthSubTerms(from int, to int, n int, subintervalCount int) (int, int) {
+	intervalLength := to - from + 1
+	step := intervalLength / subintervalCount
+
+	an, bn := 0, 0
+	an = (step * n) + 1
+	bn = step * (n + 1)
+	if bn > to {
+		bn = to
+	}
+
+	return an, bn
+}
+
+func naturalSumWithConcurrence(from int, to int) int {
+	// Divide in n subgoroutines
+	sumChan := make(chan int)
+	subintervalCount := 30 // n must b smaller than b
+	an, bn := 0, 0
+
+	// Registering n goroutines for the n sub-sums
+	res := 0
+	for i := 0; bn < to; i++ {
+		an, bn = getNthSubTerms(from, to, i, subintervalCount)
+		go func() {
+			sum := naturalSum(an, bn)
+			sumChan <- sum
+		}()
+		res += <-sumChan
+	}
+
+	return res
 }
 
 func Ej1() {
@@ -43,25 +72,7 @@ func Ej1() {
 	// Concurre	nce
 	go timer(&timerChan)
 
-	// Divide in n subgoroutines
-	sumChan := make(chan int)
-	n := 30 // n must b smaller than b
-
-	intervalLength := to - from + 1
-	step := intervalLength / n
-	an, bn := 0, 0
-
-	// Registering n goroutines for the n sub-sums
-	res = 0
-	for i := 0; bn < to; i++ {
-		an = (step * i) + 1
-		bn = step * (i + 1)
-		if bn > to {
-			bn = to
-		}
-		go naturalSumWithConcurrence(an, bn, &sumChan)
-		res += <-sumChan
-	}
+	res = naturalSumWithConcurrence(from, to)
 	fmt.Println("El resultado (concurrente) es: ", res)
 
 	timerChan <- 0 // Send to the timer that it finished
