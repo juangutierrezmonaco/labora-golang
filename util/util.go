@@ -127,20 +127,12 @@ func (m *Menu) Run() int {
 	// Choose an option
 	op := m.validateAndSetOption()
 	ClearConsole()
-
 	if op != len(m.functions)+1 && m.functions != nil {
 
 		m.functions[op-1]()
-
-		var runAgain string
-		fmt.Print("\n¿Querés volver al INICIO? S/s: ")
-		fmt.Scan(&runAgain)
-		if runAgain == "S" || runAgain == "s" {
-			ClearConsole()
-			m.Run()
-		} else {
-			fmt.Println("¡Adiós!")
-		}
+		WaitForEnter()
+		ClearConsole()
+		m.Run()
 	}
 	return op
 }
@@ -155,7 +147,24 @@ func JoinIntArr(arr []int, sep string) string {
 	return strings.Join(stringArr, sep)
 }
 
-/*** I/O ***/
+/*** I/O & Formatting ***/
+func ConfirmAction(text string) bool {
+	fmt.Printf("%s S/s: ", text)
+	var char string
+	fmt.Scan(&char)
+
+	doAction := char == "S" || char == "s"
+	return doAction
+}
+
+func TryAgainWhenError(err error, funcToRunAgain func()) {
+	fmt.Printf("\nHubo un error: %s\n", err.Error())
+	tryAgain := ConfirmAction("¿Quiere intentar nuevamente?")
+	if tryAgain {
+		funcToRunAgain()
+	}
+}
+
 func ScanSentence() string {
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
@@ -200,14 +209,26 @@ func WaitForEnter() {
 	bufio.NewReader(os.Stdin).ReadBytes('\n')
 }
 
-func TextWithFiller(filler string, quantityPerSide int, target string) string{
+func TextWithFiller(filler string, quantityPerSide int, target string) string {
 	fillerText := strings.Repeat(filler, quantityPerSide)
 	return fmt.Sprintf("%s %s %s", fillerText, target, fillerText)
+}
+
+func CapitalizeWords(str string) string {
+	return strings.Title(strings.ToLower(str))
 }
 
 /*** CASTING ***/
 func Itoa(num int) string {
 	return strconv.Itoa(num)
+}
+
+func Atoi(str string) (int, error) {
+	return strconv.Atoi(str)
+}
+
+func StrToFloat(str string) (float64, error) {
+	return strconv.ParseFloat(str, 64)
 }
 
 /*** GENERATING STUFF ***/
