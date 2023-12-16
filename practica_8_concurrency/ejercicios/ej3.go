@@ -31,7 +31,6 @@ func sumNEvenNumbersGauss(n int) int {
 }
 
 func sumNOddNumbers(n int) int {
-	time.Sleep(1 * time.Second)
 	return sumOddOrEvenNumbers(n, true)
 }
 
