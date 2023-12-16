@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func TestAddNoteWorksOk(t *testing.T) {
+func TestSumOddsWorksOk(t *testing.T) {
 	fmt.Printf("Corriendo el test: TestAddNoteWorksOk...\n")
 
 	type Test struct {
