@@ -36,7 +36,7 @@ func SumValuesWithNGoroutines(values *[]int, n int) int {
 		}()
 		res += <-sumChan
 	}
-	*values = append(*values, 25)
+
 	return res
 }
 
