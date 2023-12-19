@@ -4,12 +4,12 @@ import (
 	"fmt"
 )
 
-func Ej2b() {
+func Ej3b() {
 	// Desarrolla un programa en Golang con un canal (de enteros) compartido entre dos hilos productores y un hilo consumidor.
 	// La regla es que los hilos productores deben colocar valores en el canal de manera intercalada, asegurándose de que un hilo productor
 	// no ponga dos valores consecutivos sin que el otro hilo productor haya puesto uno.
 	// Generar la secuencia de n números naturales, mandando los números pares por un lado, y los impares por el otro.
-	fmt.Print("EJERCICIO 2\n\n")
+	fmt.Print("EJERCICIO 3\n\n")
 
 	valuesCh := make(chan int)
 	signalCh := make(chan bool)

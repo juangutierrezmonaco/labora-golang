@@ -13,7 +13,8 @@ func main() {
 	functions := []func(){
 		practica.Ej1,
 		practica.Ej2,
-		practica.Ej2b,
+		practica.Ej3,
+		practica.Ej3b,
 	}
 
 	util.RunMenu(0, len(functions), functions)
