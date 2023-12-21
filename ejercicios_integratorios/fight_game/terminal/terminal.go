@@ -52,7 +52,9 @@ func PrintIntro(contenders []contender.Contender) {
 func PrintPreCombatInfo(round int, attackerName string, dialogue string) {
 	fmt.Printf("\n\nRONDA %d\n\n", round)
 	fmt.Printf("* Se lanzó un dado de tres caras y el destino ha determinado complacer al %s\n", attackerName)
+	time.Sleep(1 * time.Second)
 	fmt.Printf("\n\t* El %s dice: # %s #\n\n", attackerName, dialogue)
+	time.Sleep(2 * time.Second)
 }
 
 func PrintResult(w contender.Contender) {
