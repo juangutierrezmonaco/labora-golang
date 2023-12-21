@@ -156,7 +156,7 @@ func RunGame() {
 		contender.NewPaladin(),
 	}
 
-	// terminal.PrintIntro(contenders)
+	terminal.PrintIntro(contenders)
 	util.PressEnterToContinue()
 
 	noVictimSurvived := false
