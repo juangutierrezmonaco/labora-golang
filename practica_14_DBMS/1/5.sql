@@ -1,0 +1,1 @@
+SELECT * FROM expense WHERE creation_date < TO_DATE('01/11/2010', 'DD/MM/YYYY') AND import > 100;
